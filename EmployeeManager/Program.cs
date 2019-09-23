@@ -10,7 +10,7 @@ namespace EmployeeManager
             string name = GetName();
             string id = GetID();
             int hours = GetHours();
-            double wage = hours <= 40 ? hours * 9.5 : 40 * 9.5 + (hours-40) * 14.25;
+            double wage = CalcWage(hours);
             Console.WriteLine("Employee Name: " + name);
             Console.WriteLine("Employee ID: " + id);
             Console.WriteLine("The weekly wage is " + string.Format("{0:0.00}", wage));
@@ -42,6 +42,10 @@ namespace EmployeeManager
             Console.WriteLine("Please enter the hours worked");
             int hours = Int32.Parse(Console.ReadLine());
             return (hours < 1 || hours > 100) ? GetHours() : hours;
+        }
+        static private double CalcWage(int hours)
+        {
+            return hours <= 40 ? hours * 9.5 : 40 * 9.5 + (hours - 40) * 14.25;
         }
     }
 }
